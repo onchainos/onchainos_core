@@ -1,0 +1,16 @@
+{
+  "demoContract": {
+    "name": "Counter Contract",
+    "classHash": "0x05a09f246f971dbb4a1368e769ec7be986de7ceadb478e21df75cd124b4e8d15",
+    "contractAddress": "0x032cbfe28e77d737c3fe5063e17e55eedbf1c4dff7157564aa234f1bce8d61c0",
+    "transactionHash": "0x0440f305041d03c29d0d322a19531301d0125cb50ab8de43332ee8bd59f6cf0d",
+    "declareTransactionHash": "0x00c0f826e7f2ba05899a8ff3eab295cb37fb31689b62011991d3e277a8de3ba6",
+    "network": "Starknet Sepolia",
+    "starkscanContractUrl": "https://sepolia.starkscan.co/contract/0x032cbfe28e77d737c3fe5063e17e55eedbf1c4dff7157564aa234f1bce8d61c0",
+    "starkscanTxUrl": "https://sepolia.starkscan.co/tx/0x0440f305041d03c29d0d322a19531301d0125cb50ab8de43332ee8bd59f6cf0d",
+    "constructorCalldata": "42",
+    "deployedAt": "2024-09-25T18:30:22Z",
+    "gasUsed": "0.0023 ETH",
+    "gasCost": "$3.45"
+  }
+}

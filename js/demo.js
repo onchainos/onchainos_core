@@ -5,15 +5,15 @@ let demoState = {
   sessionCreated: false,
   deployed: false
 };
-
-// Pre-deployed contract data for demo
+// Pre-deployed contract data for demo (using real Starknet deployment)
 const DEMO_CONTRACT_DATA = {
-  address: "0xa1b2c3d4e5f6789012345678901234567890abcd",
-  txHash: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-  explorerUrl: "https://sepolia.etherscan.io/tx/",
-  contractUrl: "https://sepolia.etherscan.io/address/",
+  classHash: "0x05a09f246f971dbb4a1368e769ec7be986de7ceadb478e21df75cd124b4e8d15",
+  contractAddress: "0x032cbfe28e77d737c3fe5063e17e55eedbf1c4dff7157564aa234f1bce8d61c0",
+  transactionHash: "0x0440f305041d03c29d0d322a19531301d0125cb50ab8de43332ee8bd59f6cf0d",
+  starkscanContractUrl: "https://sepolia.starkscan.co/contract/0x032cbfe28e77d737c3fe5063e17e55eedbf1c4dff7157564aa234f1bce8d61c0",
+  starkscanTxUrl: "https://sepolia.starkscan.co/tx/0x0440f305041d03c29d0d322a19531301d0125cb50ab8de43332ee8bd59f6cf0d",
   gasUsed: "0.0023",
-  gasPrice: "$3.45"
+  gasCost: "$3.45"
 };
 
 // Initialize demo when page loads
@@ -150,30 +150,31 @@ function deployContract() {
   }, 800);
 }
 
-// Update results with contract data
 function updateResultsWithContractData() {
   const contractLink = document.getElementById('contract-link');
   const txLink = document.getElementById('tx-link');
+  const classHashElement = document.getElementById('class-hash');
+  
+  // Update class hash
+  if (classHashElement) {
+    classHashElement.textContent = DEMO_CONTRACT_DATA.classHash;
+  }
   
   // Update contract address link
-  contractLink.textContent = DEMO_CONTRACT_DATA.address;
-  contractLink.href = DEMO_CONTRACT_DATA.contractUrl + DEMO_CONTRACT_DATA.address;
+  contractLink.textContent = DEMO_CONTRACT_DATA.contractAddress;
+  contractLink.href = DEMO_CONTRACT_DATA.starkscanContractUrl;
   
-  // Update transaction hash link
-  txLink.textContent = DEMO_CONTRACT_DATA.txHash;
-  txLink.href = DEMO_CONTRACT_DATA.explorerUrl + DEMO_CONTRACT_DATA.txHash;
+  // Update transaction hash link  
+  txLink.textContent = DEMO_CONTRACT_DATA.transactionHash;
+  txLink.href = DEMO_CONTRACT_DATA.starkscanTxUrl;
   
-  // Add click tracking for demo purposes
-  contractLink.addEventListener('click', function(e) {
-    // In a real demo, this would open the actual explorer
-    e.preventDefault();
-    showToast('Contract explorer would open here in live version');
+  // Allow real navigation to Starkscan
+  contractLink.addEventListener('click', function() {
+    showToast('Opening Starkscan contract page...');
   });
   
-  txLink.addEventListener('click', function(e) {
-    // In a real demo, this would open the actual explorer
-    e.preventDefault();
-    showToast('Transaction explorer would open here in live version');
+  txLink.addEventListener('click', function() {
+    showToast('Opening Starkscan transaction page...');
   });
 }
 

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnchainOS - Secure Execution Runtime for AI Agents</title>
+    <link rel="stylesheet" href="styles/landing.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.png" alt="OnchainOS" class="logo">
+                <span class="logo-text">OnchainOS</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="demo.html" class="nav-link demo-btn">Live Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Secure Execution Runtime for 
+                    <span class="gradient-text">AI Agents</span>
+                </h1>
+                <p class="hero-subtitle">
+                    The infrastructure layer that lets AI agents safely execute blockchain actions without exposing private keys. From contract deployment to treasury management.
+                </p>
+                <div class="hero-buttons">
+                    <a href="demo.html" class="btn-primary">
+                        <span class="btn-text">Try Live Demo</span>
+                        <div class="btn-glow"></div>
+                    </a>
+                    <a href="#about" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="agent-network">
+                    <div class="central-node">
+                        <div class="node-core"></div>
+                        <div class="node-ring"></div>
+                    </div>
+                    <div class="connection-nodes">
+                        <div class="node node-1"></div>
+                        <div class="node node-2"></div>
+                        <div class="node node-3"></div>
+                        <div class="node node-4"></div>
+                        <div class="node node-5"></div>
+                        <div class="node node-6"></div>
+                    </div>
+                    <div class="data-flows">
+                        <div class="flow flow-1"></div>
+                        <div class="flow flow-2"></div>
+                        <div class="flow flow-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">1M+</div>
+                <div class="stat-label">AI Agents by EOY</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">$2.3B</div>
+                <div class="stat-label">Lost to Smart Contract Vulnerabilities</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Secure Execution Rate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="about" class="problem-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The AI Agent Security Gap</h2>
+                <p class="section-subtitle">AI agents can write perfect smart contracts, but executing them safely on blockchain is still broken</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">⚠️</div>
+                    <h3>Private Key Exposure</h3>
+                    <p>Current deployment methods require sharing raw private keys with AI platforms, creating massive security risks.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🤖</div>
+                    <h3>No Policy Enforcement</h3>
+                    <p>AI agents lack judgment - they'll execute any transaction without understanding the security implications.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">📋</div>
+                    <h3>Zero Audit Trails</h3>
+                    <p>No way to track what AI agents deployed, when, or whether it followed security policies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="features" class="solution-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How OnchainOS Solves This</h2>
+                <p class="section-subtitle">Secure execution layer with session keys, policy enforcement, and complete audit trails</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Session Keys</h3>
+                    <p>Temporary keys with spending limits and expiration. AI agents never touch your main private keys.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Policy Sidecar</h3>
+                    <p>Simulate-before-send, block unsafe approvals, enforce spending caps automatically.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Audit Trails</h3>
+                    <p>Every action logged with policy version, simulation results, and compliance status.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Multi-Chain</h3>
+                    <p>Deploy securely across Ethereum, Starknet, and all major blockchain networks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Beyond Contract Deployment</h2>
+                <p class="section-subtitle">OnchainOS secures any blockchain action an AI agent needs to perform</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">📝</div>
+                    <h3>Smart Contract Deployment</h3>
+                    <p>AI generates code, OnchainOS deploys securely with policy checks</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">💰</div>
+                    <h3>Treasury Management</h3>
+                    <p>Autonomous rebalancing and yield optimization with spending controls</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🗳️</div>
+                    <h3>DAO Governance</h3>
+                    <p>Automated proposal creation and voting based on predefined strategies</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">⚡</div>
+                    <h3>DeFi Automation</h3>
+                    <p>MEV protection, arbitrage execution, and liquidity management</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Secure Your AI Agents?</h2>
+                <p class="cta-subtitle">See OnchainOS in action with our live demo showing secure contract deployment</p>
+                <a href="demo.html" class="btn-primary large">
+                    <span class="btn-text">Launch Demo</span>
+                    <div class="btn-glow"></div>
+                </a>
+            </div>
+            <div class="cta-visual">
+                <div class="floating-elements">
+                    <div class="floating-card card-1">Session Keys</div>
+                    <div class="floating-card card-2">Policy Engine</div>
+                    <div class="floating-card card-3">Audit Trail</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/logo.png" alt="OnchainOS" class="logo">
+                    <span class="logo-text">OnchainOS</span>
+                </div>
+                <p class="footer-text">Secure execution runtime for the agentic economy</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

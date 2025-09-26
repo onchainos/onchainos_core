@@ -18,8 +18,52 @@ const DEMO_CONTRACT_DATA = {
 
 // Initialize demo when page loads
 document.addEventListener('DOMContentLoaded', function() {
+  initializeInput();
   resetDemoState();
 });
+
+function sendMessage() {
+  const input = document.getElementById('user-input');
+  const userMessage = document.getElementById('user-message');
+  const userText = document.getElementById('user-text');
+  const generateBtn = document.getElementById('generate-btn');
+  
+  if (input.value.trim() && demoState.step === 0) {
+    // Show the user's typed message
+    userText.textContent = input.value;
+    userMessage.style.display = 'block';
+    
+    // Hide the input interface
+    document.querySelector('.input-area').style.display = 'none';
+    
+    // Hide the generate button since we're using live input now
+    if (generateBtn) generateBtn.style.display = 'none';
+    
+    // Start the AI response after a brief delay
+    setTimeout(() => startDemo(), 500);
+
+     input.value = '';
+  }
+}
+
+// Allow Enter key to send message
+function initializeInput() {
+  const userInput = document.getElementById('user-input');
+  if (userInput) {
+    userInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+
+    // Remove any existing input event listeners that might be causing issues
+    userInput.removeEventListener('input', startDemo);
+  }
+}
+
+
 
 // Start the demo flow
 function startDemo() {
@@ -29,10 +73,15 @@ function startDemo() {
   const typingIndicator = document.getElementById('typing');
   const generatedCode = document.getElementById('generated-code');
   const problemAlert = document.getElementById('problem-alert');
+
+  // Update demo state immediately to prevent duplicate calls
+  demoState.step = 0.5;
   
-  // Disable button and show generating state
-  generateBtn.textContent = 'Generating...';
-  generateBtn.disabled = true;
+  // If using the generate button (not the input), show generating state
+  if (generateBtn && generateBtn.style.display !== 'none') {
+    generateBtn.textContent = 'Generating...';
+    generateBtn.disabled = true;
+  }
   
   // Show typing indicator
   typingIndicator.style.display = 'flex';
@@ -51,7 +100,9 @@ function startDemo() {
       // Enable OnchainOS panel
       enableOnchainOSPanel();
       
-      generateBtn.textContent = 'Contract Generated ✓';
+      if (generateBtn && generateBtn.style.display !== 'none') {
+        generateBtn.textContent = 'Contract Generated ✓';
+      }
       demoState.step = 1;
       demoState.contractGenerated = true;
       
@@ -69,14 +120,17 @@ function enableOnchainOSPanel() {
   onchainOSPanel.style.borderColor = 'rgba(0, 217, 255, 0.5)';
   onchainOSPanel.style.boxShadow = '0 0 30px rgba(0, 217, 255, 0.2)';
   
-  // Show session key section
   setTimeout(() => {
-    sessionSection.style.display = 'block';
-    sessionSection.classList.add('fade-in');
+    if (sessionSection) {
+      sessionSection.style.display = 'block';
+      sessionSection.classList.add('fade-in');
+    }
     
     // Enable deploy button
-    deployBtn.disabled = false;
-    deployBtn.textContent = 'Deploy Securely';
+    if (deployBtn) {
+      deployBtn.disabled = false;
+      deployBtn.textContent = 'Deploy Securely';
+    }
     
     demoState.sessionCreated = true;
     
@@ -92,14 +146,21 @@ function deployContract() {
   const processText = document.getElementById('process-text');
   const resultsInterface = document.getElementById('results-interface');
   const successResults = document.getElementById('success-results');
+
+  // Update state to prevent re-entry
+  demoState.step = 1.5;
   
   // Disable button and show processing
-  deployBtn.disabled = true;
-  deployBtn.textContent = 'Deploying...';
+  if (deployBtn) {
+    deployBtn.disabled = true;
+    deployBtn.textContent = 'Deploying...';
+  }
   
   // Show processing section
-  processing.style.display = 'block';
-  processing.classList.add('fade-in');
+  if (processing) {
+    processing.style.display = 'block';
+    processing.classList.add('fade-in');
+  }
   
   // Simulate deployment steps
   const steps = [
@@ -130,17 +191,22 @@ function deployContract() {
         resultsPanel.style.borderColor = 'rgba(0, 230, 118, 0.5)';
         resultsPanel.style.boxShadow = '0 0 30px rgba(0, 230, 118, 0.2)';
         
+        
         // Hide placeholder and show results
-        resultsInterface.innerHTML = '';
-        successResults.style.display = 'block';
-        successResults.classList.add('fade-in');
+        if (resultsInterface) resultsInterface.innerHTML = '';
+        if (successResults) {
+          successResults.style.display = 'block';
+          successResults.classList.add('fade-in');
+        }
         
         // Update links with actual data
         updateResultsWithContractData();
         
         // Update deploy button
-        deployBtn.textContent = 'Deployed Successfully ✓';
-        deployBtn.style.background = 'var(--success-green)';
+        if (deployBtn) {
+          deployBtn.textContent = 'Deployed Successfully ✓';
+          deployBtn.style.background = 'var(--success-green)';
+        }
         
         demoState.step = 2;
         demoState.deployed = true;
@@ -161,12 +227,16 @@ function updateResultsWithContractData() {
   }
   
   // Update contract address link
-  contractLink.textContent = DEMO_CONTRACT_DATA.contractAddress;
-  contractLink.href = DEMO_CONTRACT_DATA.starkscanContractUrl;
+  if (contractLink) {
+    contractLink.textContent = DEMO_CONTRACT_DATA.contractAddress;
+    contractLink.href = DEMO_CONTRACT_DATA.starkscanContractUrl;
+  }
   
   // Update transaction hash link  
-  txLink.textContent = DEMO_CONTRACT_DATA.transactionHash;
-  txLink.href = DEMO_CONTRACT_DATA.starkscanTxUrl;
+  if (txLink) {
+    txLink.textContent = DEMO_CONTRACT_DATA.transactionHash;
+    txLink.href = DEMO_CONTRACT_DATA.starkscanTxUrl;
+  }
   
   // Allow real navigation to Starkscan
   contractLink.addEventListener('click', function() {
@@ -190,7 +260,6 @@ function restartDemo() {
   showToast('Demo restarted - try it again!');
 }
 
-// Reset demo state
 function resetDemoState() {
   demoState = {
     step: 0,
@@ -204,12 +273,23 @@ function resetDemoState() {
   const typingIndicator = document.getElementById('typing');
   const generatedCode = document.getElementById('generated-code');
   const problemAlert = document.getElementById('problem-alert');
+  const userMessage = document.getElementById('user-message');
+  const inputArea = document.querySelector('.input-area');
   
-  generateBtn.textContent = 'Generate Contract';
-  generateBtn.disabled = false;
-  typingIndicator.style.display = 'none';
-  generatedCode.style.display = 'none';
-  problemAlert.style.display = 'none';
+  if (generateBtn) {
+    generateBtn.textContent = 'Generate Contract';
+    generateBtn.disabled = false;
+    generateBtn.style.display = 'block';
+  }
+  if (typingIndicator) typingIndicator.style.display = 'none';
+  if (generatedCode) generatedCode.style.display = 'none';
+  if (problemAlert) problemAlert.style.display = 'none';
+  if (userMessage) userMessage.style.display = 'none';
+  if (inputArea) inputArea.style.display = 'block';
+  
+  // Clear input
+  const userInput = document.getElementById('user-input');
+  if (userInput) userInput.value = '';
   
   // Reset OnchainOS Panel
   const onchainOSPanel = document.getElementById('onchainos-panel');
@@ -217,31 +297,40 @@ function resetDemoState() {
   const sessionSection = document.getElementById('session-section');
   const processing = document.getElementById('processing');
   
-  onchainOSPanel.style.borderColor = 'rgba(0, 217, 255, 0.1)';
-  onchainOSPanel.style.boxShadow = 'none';
-  deployBtn.disabled = true;
-  deployBtn.textContent = 'Deploy Securely';
-  deployBtn.style.background = '';
-  sessionSection.style.display = 'none';
-  processing.style.display = 'none';
+  if (onchainOSPanel) {
+    onchainOSPanel.style.borderColor = 'rgba(0, 217, 255, 0.1)';
+    onchainOSPanel.style.boxShadow = 'none';
+  }
+  if (deployBtn) {
+    deployBtn.disabled = true;
+    deployBtn.textContent = 'Deploy Securely';
+    deployBtn.style.background = '';
+  }
+  if (sessionSection) sessionSection.style.display = 'none';
+  if (processing) processing.style.display = 'none';
   
   // Reset Results Panel
   const resultsPanel = document.getElementById('results-panel');
   const resultsInterface = document.getElementById('results-interface');
   const successResults = document.getElementById('success-results');
   
-  resultsPanel.style.borderColor = 'rgba(0, 217, 255, 0.1)';
-  resultsPanel.style.boxShadow = 'none';
-  successResults.style.display = 'none';
+  if (resultsPanel) {
+    resultsPanel.style.borderColor = 'rgba(0, 217, 255, 0.1)';
+    resultsPanel.style.boxShadow = 'none';
+  }
+  if (successResults) successResults.style.display = 'none';
   
   // Restore placeholder
-  resultsInterface.innerHTML = `
-    <div class="placeholder-state">
-      <div class="placeholder-icon">⏳</div>
-      <p>Deployment results will appear here...</p>
-    </div>
-  `;
+  if (resultsInterface) {
+    resultsInterface.innerHTML = `
+      <div class="placeholder-state">
+        <div class="placeholder-icon">⏳</div>
+        <p>Deployment results will appear here...</p>
+      </div>
+    `;
+  }
 }
+
 
 // Utility function to show toast notifications
 function showToast(message) {
@@ -274,10 +363,13 @@ function showToast(message) {
   setTimeout(() => {
     toast.style.transform = 'translateX(100%)';
     setTimeout(() => {
-      document.body.removeChild(toast);
+      if (document.body.contains(toast)) {
+        document.body.removeChild(toast);
+      }
     }, 300);
   }, 3000);
 }
+
 
 // Add smooth scrolling for better UX
 function scrollToPanel(panelId) {
@@ -290,21 +382,27 @@ function scrollToPanel(panelId) {
   }
 }
 
-// Add keyboard shortcuts for demo control
 document.addEventListener('keydown', function(e) {
   // Press 'R' to restart demo
   if (e.key.toLowerCase() === 'r' && !e.ctrlKey && !e.metaKey) {
-    restartDemo();
+    const activeElement = document.activeElement;
+    // Don't restart if user is typing in input field
+    if (activeElement && activeElement.tagName !== 'INPUT') {
+      restartDemo();
+    }
   }
   
-  // Press 'Space' to advance demo
+  // Press 'Space' to advance demo (only if not typing in input)
   if (e.key === ' ' && !e.ctrlKey && !e.metaKey) {
-    e.preventDefault();
-    
-    if (demoState.step === 0 && !demoState.contractGenerated) {
-      startDemo();
-    } else if (demoState.step === 1 && demoState.sessionCreated && !demoState.deployed) {
-      deployContract();
+    const activeElement = document.activeElement;
+    if (!activeElement || activeElement.tagName !== 'INPUT') {
+      e.preventDefault();
+      
+      if (demoState.step === 0 && !demoState.contractGenerated) {
+        startDemo();
+      } else if (demoState.step === 1 && demoState.sessionCreated && !demoState.deployed) {
+        deployContract();
+      }
     }
   }
 });

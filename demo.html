@@ -46,8 +46,12 @@
                     <div class="panel-content">
                         <div class="chat-interface">
                             <div class="chat-input">
-                                <div class="user-message">
-                                    <strong>User:</strong> "Write a simple Cairo contract that implements a counter"
+                                <div class="input-area">
+                                    <input type="text" id="user-input" placeholder="Type your request to CairoCoder AI..." />
+                                    <button id="send-btn" onclick="sendMessage()">Send</button>
+                                </div>
+                                <div class="user-message" id="user-message" style="display: none;">
+                                    <strong>User:</strong> <span id="user-text"></span>
                                 </div>
                             </div>
                             
@@ -211,25 +215,25 @@ pub mod Counter {
                             
                             <div class="result-item">
                                 <span class="result-label">Gas Used:</span>
-                                <span class="result-value">0.0023 ETH ($3.45)</span>
+                                <span class="result-value">0.00002 ETH ($0.0789)</span>
                             </div>
                             
                             <div class="audit-trail">
                                 <h4>Audit Trail</h4>
                                 <div class="audit-item">
-                                    <span class="audit-time">2024-09-25 18:30:15</span>
+                                    <span class="audit-time">2025-09-25 18:30:15</span>
                                     <span class="audit-action">Session key created</span>
                                 </div>
                                 <div class="audit-item">
-                                    <span class="audit-time">2024-09-25 18:30:16</span>
+                                    <span class="audit-time">2025-09-25 18:30:16</span>
                                     <span class="audit-action">Policy validation passed</span>
                                 </div>
                                 <div class="audit-item">
-                                    <span class="audit-time">2024-09-25 18:30:18</span>
+                                    <span class="audit-time">2025-09-25 18:30:18</span>
                                     <span class="audit-action">Contract simulation successful</span>
                                 </div>
                                 <div class="audit-item">
-                                    <span class="audit-time">2024-09-25 18:30:22</span>
+                                    <span class="audit-time">2025-09-25 18:30:22</span>
                                     <span class="audit-action">Contract deployed successfully</span>
                                 </div>
                             </div>

@@ -606,6 +606,32 @@ body {
   transform: translateY(-2px);
 }
 
+.input-area {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+#user-input {
+  flex: 1;
+  padding: 12px;
+  background: var(--background-darker);
+  border: 1px solid rgba(0, 217, 255, 0.3);
+  border-radius: 8px;
+  color: var(--text-white);
+  font-size: 14px;
+}
+
+#send-btn {
+  background: var(--gradient-primary);
+  color: var(--background-dark);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
 /* Animations */
 @keyframes typing {
   0%, 80%, 100% {
